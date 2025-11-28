@@ -44,12 +44,12 @@ logs/
 # Data folders
 # keep the repository lightweight and avoid committing raw + processed files
 # =====================================
-data/raw/
-data/processed/
-data/graph/
-data/tmp/
-*.csv
-*.jsonl
+# data/raw/
+# data/processed/
+# data/graph/
+# data/tmp/
+# *.csv
+# *.jsonl
 
 # If you want to keep the 4 original JSON files → uncomment the line below
 # data/json/

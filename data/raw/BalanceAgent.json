@@ -1,0 +1,87 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "balance": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "Tài khoản trong viễn thông, chỉ bao gồm các trường: id, balType, effDate, expDate, updateDate, state, level, of",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "^\\d{8}$",
+                        "description": "là ID của tài khoản, unique, tối đa 8 kí tự (6 kí tự đầu: id của balance, 2 kí tự sau: clusterId). Có ràng buộc với trường khác: Nằm trong balanceIdList của Subscriber."
+                    },
+                    "balType": {
+                        "type": "integer",
+                        "description": "là loại tài khoản. Đối với thuê bao Mobile trả trước hoặc Homephone trả trước, baltype tài khoản chính = 1. Đối với thuê bao Mobile trả sau hoặc Homephone trả sau, baltype tài khoản chính = 3000. Các trường hợp không mô tả cụ thể tài khoản nào, tùy theo loại thuê bao, balType trong danh sách: \n+ Thuê bao Mobile/Homephone trả trước, FTTH, balType nằm trong: 10, 12, 18, 19, 20 \n+ Thuê bao Mobile/Homephone/FTTH/PSTN trả sau, balType nằm trong: 3001, 3002, 3003, 5000, 5001"
+                    },
+                    "effDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là ngày hiệu lực của tài khoản (Unix timestamp, tính bằng milliseconds). Nếu thuê bao có hiệu lực, effDate <= thời điểm hiện tại -1 ngày, ngược lại effDate >= thời điểm hiện tại + 1 ngày."
+                    },
+                    "expDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là ngày hết hạn của tài khoản (Unix timestamp, tính bằng milliseconds). Nếu thuê bao còn hạn, expDate >= thời điểm hiện tại + 1 ngày, ngược lại expDate < thời điểm hiện tại - 1 ngày."
+                    },
+                    "updateDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là ngày update gần nhất của gói cước (Unix timestamp, tính bằng milliseconds)."
+                    },
+                    "gross": {
+                        "type": "integer",
+                        "default": 500000,
+                        "description": "là lượng tiền của tài khoan, được sử dụng trong coog thức available = gross - consume - reserve"
+                    },
+                    "consume": {
+                        "type": "integer",
+                        "default": 500,
+                        "description": "là lượng quota đã dùng của tài khoản, được sử dụng trong công thức available = gross - consume - reserve. Có ràng buộc với trường khác: giá trị nhỏ hơn gross. Nếu không được đề cập trong prompt, giá trị mặc định là 500"
+                    },
+                    "reserve": {
+                        "type": "integer",
+                        "default": 10000,
+                        "description": "là lượng quota đã ứng trước của tài khoản, được sử dụng trong công thức available = gross - consume - reserve. Có ràng buộc với trường khác: giá trị nhỏ hơn gross - consume."
+                    },
+                    "state": {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "là trạng thái của tài khoản. Nếu trạng thái active, state = 1, ngược lại state = 3."
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "Level của tài khoản. Có ràng buộc với trường khác: tham chiếu của trường 'of'. Nếu gói cước mức cust, level = 1. Nếu gói cước mức sub, level = 2. Nếu không đề cập, level = 2 (mức cust).",
+                        "enum": [1,2,6]
+                    },
+                    "of": {
+                        "type": "integer",
+                        "description": "được mô tả để xác định chủ thuê bao. Nếu level = 1: of = custID trong câu lệnh đầu vào. Nếu level = 2: of nhận giá trị subID trong câu lệnh đầu vào. Trường này có yêu cầu bắt buộc. Có ràng buộc với trường level."
+                    }
+                },
+                "required": [
+                    "id",
+                    "balType",
+                    "effDate",
+                    "expDate",
+                    "updateDate",
+                    "gross",
+                    "consume",
+                    "reserve",
+                    "state",
+                    "level",
+                    "of"
+                ],
+                "additionalProperties": false
+            }
+        }
+    },
+                "required": [
+                    "balance"
+                ]
+}
+
+                    
