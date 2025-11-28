@@ -1,0 +1,96 @@
+# =====================================
+# Python cache & virtual env
+# =====================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+.env
+.env.*
+
+# =====================================
+# Jupyter Notebook
+# =====================================
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# =====================================
+# Editor config
+# =====================================
+.vscode/
+.idea/
+*.code-workspace
+
+# =====================================
+# Operating system
+# =====================================
+.DS_Store
+Thumbs.db
+
+# =====================================
+# Logs
+# =====================================
+logs/
+*.log
+
+# =====================================
+# Data folders
+# keep the repository lightweight and avoid committing raw + processed files
+# =====================================
+data/raw/
+data/processed/
+data/graph/
+data/tmp/
+*.csv
+*.jsonl
+
+# If you want to keep the 4 original JSON files → uncomment the line below
+# data/json/
+
+# =====================================
+# Neo4j related
+# =====================================
+neo4j/data/
+neo4j/logs/
+neo4j/import/
+neo4j/plugins/
+*.db
+*.dump
+
+# =====================================
+# Embedding models / cache
+# =====================================
+models/
+cache/
+huggingface/
+*.bin
+*.pt
+*.ckpt
+*.model
+
+# =====================================
+# Streamlit
+# =====================================
+.streamlit/secrets.toml
+.streamlit/state.json
+.streamlit/credentials.toml
+
+# =====================================
+# Docker
+# =====================================
+docker/*.pid
+docker/data/
+docker/logs/
+
+# =====================================
+# Python dependency lock files (optional)
+# =====================================
+Pipfile.lock
+poetry.lock
