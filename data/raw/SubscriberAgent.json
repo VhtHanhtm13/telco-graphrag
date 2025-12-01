@@ -130,5 +130,7 @@
       }
     }
   },
-  "required": ["subscriber"]
+  "required": [
+    "subscriber"
+  ]
 }

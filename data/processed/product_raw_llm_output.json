@@ -1,0 +1,224 @@
+{
+  "product": [
+    {
+      "id": 10000001,
+      "productOfferingID": 20000000000000000001,
+      "effDate": "1700000000000",
+      "expDate": "1702000000000",
+      "updateDate": "1704000000000",
+      "state": 1,
+      "level": 1,
+      "of": 30000001,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000002,
+      "productOfferingID": 20000000000000000002,
+      "effDate": "1700000010000",
+      "expDate": "1702000010000",
+      "updateDate": "1704000010000",
+      "state": 3,
+      "level": 2,
+      "of": 40000002,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000003,
+      "productOfferingID": 20000000000000000003,
+      "effDate": "1700000020000",
+      "expDate": "1702000020000",
+      "updateDate": "1704000020000",
+      "state": 1,
+      "level": 1,
+      "of": 30000003,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000004,
+      "productOfferingID": 20000000000000000004,
+      "effDate": "1700000030000",
+      "expDate": "1702000030000",
+      "updateDate": "1704000030000",
+      "state": 3,
+      "level": 2,
+      "of": 40000004,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000005,
+      "productOfferingID": 20000000000000000005,
+      "effDate": "1700000040000",
+      "expDate": "1702000040000",
+      "updateDate": "1704000040000",
+      "state": 1,
+      "level": 1,
+      "of": 30000005,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000006,
+      "productOfferingID": 20000000000000000006,
+      "effDate": "1700000050000",
+      "expDate": "1702000050000",
+      "updateDate": "1704000050000",
+      "state": 3,
+      "level": 2,
+      "of": 40000006,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000007,
+      "productOfferingID": 20000000000000000007,
+      "effDate": "1700000060000",
+      "expDate": "1702000060000",
+      "updateDate": "1704000060000",
+      "state": 1,
+      "level": 1,
+      "of": 30000007,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000008,
+      "productOfferingID": 20000000000000000008,
+      "effDate": "1700000070000",
+      "expDate": "1702000070000",
+      "updateDate": "1704000070000",
+      "state": 3,
+      "level": 2,
+      "of": 40000008,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000009,
+      "productOfferingID": 20000000000000000009,
+      "effDate": "1700000080000",
+      "expDate": "1702000080000",
+      "updateDate": "1704000080000",
+      "state": 1,
+      "level": 1,
+      "of": 30000009,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000010,
+      "productOfferingID": 20000000000000000010,
+      "effDate": "1700000090000",
+      "expDate": "1702000090000",
+      "updateDate": "1704000090000",
+      "state": 3,
+      "level": 2,
+      "of": 40000010,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000011,
+      "productOfferingID": 20000000000000000011,
+      "effDate": "1700000100000",
+      "expDate": "1702000100000",
+      "updateDate": "1704000100000",
+      "state": 1,
+      "level": 1,
+      "of": 30000011,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000012,
+      "productOfferingID": 20000000000000000012,
+      "effDate": "1700000110000",
+      "expDate": "1702000110000",
+      "updateDate": "1704000110000",
+      "state": 3,
+      "level": 2,
+      "of": 40000012,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000013,
+      "productOfferingID": 20000000000000000013,
+      "effDate": "1700000120000",
+      "expDate": "1702000120000",
+      "updateDate": "1704000120000",
+      "state": 1,
+      "level": 1,
+      "of": 30000013,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000014,
+      "productOfferingID": 20000000000000000014,
+      "effDate": "1700000130000",
+      "expDate": "1702000130000",
+      "updateDate": "1704000130000",
+      "state": 3,
+      "level": 2,
+      "of": 40000014,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000015,
+      "productOfferingID": 20000000000000000015,
+      "effDate": "1700000140000",
+      "expDate": "1702000140000",
+      "updateDate": "1704000140000",
+      "state": 1,
+      "level": 1,
+      "of": 30000015,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000016,
+      "productOfferingID": 20000000000000000016,
+      "effDate": "1700000150000",
+      "expDate": "1702000150000",
+      "updateDate": "1704000150000",
+      "state": 3,
+      "level": 2,
+      "of": 40000016,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000017,
+      "productOfferingID": 20000000000000000017,
+      "effDate": "1700000160000",
+      "expDate": "1702000160000",
+      "updateDate": "1704000160000",
+      "state": 1,
+      "level": 1,
+      "of": 30000017,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000018,
+      "productOfferingID": 20000000000000000018,
+      "effDate": "1700000170000",
+      "expDate": "1702000170000",
+      "updateDate": "1704000170000",
+      "state": 3,
+      "level": 2,
+      "of": 40000018,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000019,
+      "productOfferingID": 20000000000000000019,
+      "effDate": "1700000180000",
+      "expDate": "1702000180000",
+      "updateDate": "1704000180000",
+      "state": 1,
+      "level": 1,
+      "of": 30000019,
+      "recurringDay": "01-06-25"
+    },
+    {
+      "id": 10000020,
+      "productOfferingID": 20000000000000000020,
+      "effDate": "1700000190000",
+      "expDate": "1702000190000",
+      "updateDate": "1704000190000",
+      "state": 3,
+      "level": 2,
+      "of": 40000020,
+      "recurringDay": "01-06-25"
+    }
+  ]
+}
