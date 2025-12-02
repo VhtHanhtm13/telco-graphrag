@@ -1,0 +1,1 @@
+# Structured answer format: explanation + traceability

@@ -1,0 +1,122 @@
+Bạn là chuyên gia trong lĩnh vực viễn thông, nhiệm vụ của bạn là dựa trên đặc tả được cung cấp sau đây, sinh dữ liệu theo nghiệp vụ :
+
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "product": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "Gói cước trong viễn thông (Product), chỉ bao gồm các trường: id, productOfferingID, effDate, expDate, updateDate, state, level, of, recurringDay",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "^\\d{8}$",
+                        "description": "là ID của gói cước, giá trị độc nhất, nhiều nhất 8 kí tự(6 kí tự của product và 2 kí tự của clusterId) Có ràng buộc với trường khác: Nằm trong productIdList của đối tượng subscriber."
+                    },
+                    "productOfferingID": {
+                        "type": "integer",
+                        "format": "^\\d{20}$",
+                        "description": "là ID của gói cước, mapping 1-1 với offer trong mysql. Các gói cước khác id nhưng có thể cùng productOfferingID"
+                    },
+                    "effDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "Thời gian bắt đầu hiệu lực (Unix timestamp, milliseconds). Nếu thuê bao có hiệu lực, effDate <= thời điểm hiện tại - 1 ngày, ngược lại effDate >= thời điểm hiện tại + 10 ngày"
+                    },
+                    "expDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "Thời gian hết hạn (Unix timestamp, milliseconds). Nếu thuê bao còn hạn, expDate >= thời điểm hiện tại + 1 ngày, ngược lại expDate < thời điểm hiện tại - 1 ngày"
+                    },
+                    "updateDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "Thời điểm cập nhật cuối (Unix timestamp, milliseconds)."
+                    },
+                    "state": {
+                        "type": "integer",
+                        "description": "Trạng thái của gói cước. Nếu thuê bao active, state = 1, ngược lại state = 3. Nếu không được định nghĩa, trạng thái = active, state = 1. Ví dụ: 1"
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "Level của gói cước (product). Có ràng buộc với trường khác: tham chiếu của trường 'of'. Nếu gói cước mức cust, level = 1. Nếu gói cước mức sub, level =2. Nếu không đề cập, level = 2 (gói cước mức sub)."
+                    },
+                    "of": {
+                        "type": "integer",
+                        "description": "được mô tả để xác định chủ thuê bao. Nếu level = 1: nhận giá trị 'custID' trong câu lệnh đầu vào. Nếu level = 2: nhận giá trị 'subID' trong câu lệnh đầu vào. Có ràng buộc với trường khác: Tham chiếu đến trường level"
+                    },
+                    "recurringDay": {
+                        "type": "string",
+                        "description": "Ngày gia hạn gần nhất(Unix timestamp, milliseconds). Nếu không được định nghĩa, recurringDay = effDate"
+                    }
+                },
+                    "required": [
+                        "id",
+                        "productOfferingID",
+                        "effDate",
+                        "expDate",
+                        "updateDate",
+                        "state",
+                        "level",
+                        "of",
+                        "recurringDay"
+                    ],
+                    "additionalProperties": false
+                    }
+                }
+            },
+                    "required": [
+                        "product"
+                    ]
+                }
+
+ ###HƯỚNG DẪN (INSTRUCTION)###             
+1. Ghi nhớ các trường của đối tượng Product, ràng buộc của các trường và liên kết với subID
+2. Phân tích câu lệnh đầu vào để xác định yêu cầu tạo dữ liệu.
+3. Tạo dữ liệu tuân thủ ràng buộc. Với các trường không đề cập trong câu lệnh, sinh dữ liệu ngẫu nhiên theo đúng định dạng. Với những trường có đề cập trong prompt, sinh tuân theo mô tả.
+4. Trả ra danh sách đối tượng Product đúng định dạng JSON.
+
+Đầu vào (INPUT)
+Ví dụ:
+Lệnh: Tạo gói cước có ID = 500, hết hạn
+
+Đầu ra (OUTPUT)
+{
+  "product": [
+    {
+      "id": 500,
+      "productOfferingID": 200,
+      "effDate": "1700000000000",
+      "expDate": "1720000000000",
+      "updateDate": "1712000000000",
+      "state": 3,
+      "level": 2,
+      "of": 4400,
+      "recurringDay": "01-06-25"
+    }
+  ]
+}
+
+
+hãy tọa 20 tài khoản mỗi tài khoản theo mẫu: {
+  "product": [
+    {
+      "id": 500,
+      "productOfferingID": 200,
+      "effDate": "1700000000000",
+      "expDate": "1720000000000",
+      "updateDate": "1712000000000",
+      "state": 3,
+      "level": 2,
+      "of": 4400,
+      "recurringDay": "01-06-25"
+    }
+  ]
+}
+
+Trả về đúng 20 phần tử trong mảng `product`, đúng định dạng JSON, không lặp lại, đầy đủ trường, không thêm giải thích.
+
+Ghi chú: Trả ra mảng 20 object JSON trong 1 lần duy nhất.
+            

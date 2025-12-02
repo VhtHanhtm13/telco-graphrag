@@ -1,0 +1,216 @@
+Bạn là chuyên gia trong lĩnh vực viễn thông, nhiệm vụ của bạn là dựa trên đặc tả được cung cấp sau đây, sinh dữ liệu theo nghiệp vụ :
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "subscriber": {
+      "type": "array",
+      "description": "Thuê bao viễn thông, chỉ bao gồm các trường: msisdn, subId, custId, mainProductId, isDefault, precharge, subType, stateSet, effDate, expDate, updateDate, balanceIdList, acmBalanceIdList, productIdList, groupIdList, membershipIdList, charIdList, cellList, zoneList, langId, imsi, iccid, password",
+      "items": {
+        "type": "object",
+        "properties": {
+          "msisdn": {
+            "type": "string",
+            "description": "là số điện thoại đại diện cho 1 thuê bao, có giá trị độc nhất. Trường này có yêu cầu bắt buộc, có định dạng là: 84\\d{9}. Không có ràng buộc với trường khác. Nếu không được định nghĩa, hệ thống lấy giá trị random theo định dạng."
+          },
+          "subId": {
+            "type": "integer",
+            "description": "là ID định danh của thuê bao, giá trị độc nhất. Trường này có yêu cầu bắt buộc, có định dạng là: gồm 6 chữ số. Không có ràng buộc với trường khác. Nếu không được định nghĩa, hệ thống lấy giá trị random theo định dạng. Ví dụ: 789456"
+          },
+          "custId": {
+            "type": "integer",
+            "description": "là ID định danh của thuê bao, giá trị độc nhất. Trường này có yêu cầu bắt buộc, có định dạng là: gồm 12 chữ số (12 digit). Có ràng buộc với trường khác: Bằng giá trị subId. Nếu không được định nghĩa, hệ thống lấy giá trị random theo định dạng. Ví dụ: 12454"
+          },
+          "mainProductId": {
+            "type": "integer",
+            "description": "là gói cước chính của thuê bao. Trường này có yêu cầu bắt buộc, có định dạng là: gồm 3 chữ số (3 digits). Có ràng buộc với trường khác. Nếu không được định nghĩa: Nếu subType là thuê bao mobile trả trước/homephone trả trước thì default = 222. Các TH còn lại (mobile trả sau/homephone trả sau/FTTH/PSTN) thì default = 295."
+          },
+          "isDefault": {
+            "type": "boolean",
+            "description": "được mô tả xem có phải default subscriber hay không. Trường này không yêu cầu bắt buộc. Không có ràng buộc với trường khác. Nếu không được định nghĩa, hệ thống lấy false. Ví dụ: false"
+          },
+          "precharge": {
+            "type": "integer",
+            "description": "là giá trị charge trước của thuê bao. Trường này yêu cầu bắt buộc khi subType là mobile trả trước/homephone trả trước, có định dạng là: gồm 6 chữ số. Với các subType khác, giá trị = 0"
+          },
+          "subType": {
+            "type": "integer",
+            "description": "là loại thuê bao (1: Mobile trả sau, 2: trả trước, 3: FTTH, 4: HomePhone trả sau, 5: HomePhone trả trước, 7: PSTN). Trường này có yêu cầu bắt buộc."
+          },
+          "stateSet": {
+            "type": "string",
+            "description": "là trạng thái hoạt động của thuê bao, bao gồm 3 trạng thái: active, chặn 1 chiều, chặn 2 chiều..."
+          },
+          "effDate": {
+            "type": "string",
+            "description": "là ngày hiệu lực của thuê bao (Unix timestamp, ms)."
+          },
+          "expDate": {
+            "type": "string",
+            "description": "là ngày hết hạn thuê bao."
+          },
+          "updateDate": {
+            "type": "string",
+            "description": "Ngày update gần nhất của thuê bao."
+          },
+          "balanceIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách ID tài khoản."
+          },
+          "acmBalanceIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách ID tài khoản tích lũy."
+          },
+          "productIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách ID gói cước."
+          },
+          "groupIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách ID group chủ."
+          },
+          "membershipIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách group mà thuê bao là member."
+          },
+          "charIdList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "description": "Danh sách characteristic của thuê bao."
+          },
+          "cellList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "default": []
+          },
+          "zoneList": {
+            "type": "array",
+            "items": { "type": "integer" },
+            "default": []
+          },
+          "langId": {
+            "type": "integer",
+            "default": 57
+          },
+          "imsi": { "type": "integer" },
+          "iccid": { "type": "integer" },
+          "password": {
+            "type": "integer",
+            "format": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[A-Za-z\\d]{8,20})$",
+            "description": "Mã hóa mật khẩu"
+          }
+        },
+        "required": [
+          "msisdn",
+          "subId",
+          "custId",
+          "mainProductId",
+          "isDefault",
+          "precharge",
+          "subType",
+          "stateSet",
+          "effDate",
+          "expDate",
+          "updateDate",
+          "balanceIdList",
+          "acmBalanceIdList",
+          "productIdList",
+          "groupIdList",
+          "membershipIdList",
+          "charIdList",
+          "langId",
+          "imsi",
+          "iccid",
+          "password"
+        ]
+      }
+    }
+  },
+  "required": [
+    "subscriber"
+  ]
+}
+
+###HƯỚNG DÂN (INSTRUCTION) ###
+Ghi nhớ các trường trong đối tượng Subscriber
+Ghi nhớ các tính chất, ràng buộc của từng trường trong đối tượng
+Phân tích câu lệnh đầu vào, đưa ra các ràng buộc cần thỏa mãn
+Sinh dữ liệu đúng theo các ràng buộc
+Trả ra danh sách đối tượng Subscriber dạng JSON
+
+Đầu vào (INPUT) 
+Câu lệnh tạo đối tượng Subcriber 
+Ví dụ: Tạo thuê bao sau 
+
+Đầu ra (OUTPUT)
+Danh sách đối tượng Subscriber
+Ví dụ:
+{
+  "subscriber": [
+    {
+      "msisdn": "84998887777",
+      "subId": 6600,
+      "custId": 6600,
+      "mainProductId": 700,
+      "isDefault": false,
+      "precharge": 600000,
+      "subType": 1,
+      "stateSet": "3000-1122-3344-5566",
+      "effDate": "1700000000000",
+      "expDate": "1740000000000",
+      "updateDate": "1712000000000",
+      "balanceIdList": [701],
+      "acmBalanceIdList": [801],
+      "productIdList": [700],
+      "groupIdList": [],
+      "membershipIdList": [],
+      "charIdList": [901],
+      "cellList": [11],
+      "zoneList": [22],
+      "state": 1,
+      "level": 2,
+      "of": 6600
+    }
+  ]
+}
+
+hãy tạo ra 20 tài khoản mỗi tài khoản theo mẫu : 
+{
+  "subscriber": [
+    {
+      "msisdn": "84998887777",
+      "subId": 6600,
+      "custId": 6600,
+      "mainProductId": 700,
+      "isDefault": false,
+      "precharge": 600000,
+      "subType": 1,
+      "stateSet": "3000-1122-3344-5566",
+      "effDate": "1700000000000",
+      "expDate": "1740000000000",
+      "updateDate": "1712000000000",
+      "balanceIdList": [701],
+      "acmBalanceIdList": [801],
+      "productIdList": [700],
+      "groupIdList": [],
+      "membershipIdList": [],
+      "charIdList": [901],
+      "cellList": [11],
+      "zoneList": [22],
+      "state": 1,
+      "level": 2,
+      "of": 6600
+    }
+  ]
+}
+
+Trả về đúng 20 phần tử trong mảng `subscriber`, đúng định dạng JSON, không lặp lại, đầy đủ trường, không thêm giải thích.
+
+Ghi chú: Trả ra mảng 20 object JSON trong 1 lần duy nhất.
+           

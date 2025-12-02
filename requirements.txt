@@ -5,5 +5,6 @@ requests
 neo4j>=5.0.0
 streamlit
 pandas
+neo4j 
 
 

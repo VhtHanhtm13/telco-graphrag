@@ -1,0 +1,141 @@
+bạn là chuyên gia trong lĩnh vực viễn thông, nhiệm vụ của bạn là dựa trên đặc tả được cung cấp sau đây, sinh dữ liệu theo nghiệp vụ: 
+
+### ĐẶC TẢ ###
+
+
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "acmBalance": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "description": "Tài khoản tích lũy của thuê bao",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "là ID của tài khoản tích lũy, giá trị độc nhất, gồm 8 kí tự (6 kí tự của id acmBalance, và 2 kí tự clusterID). Có ràng buộc với trường khác: Nằm trong acmBalanceIdList của Subscriber."
+                    },
+                    "balType": {
+                        "type": "integer",
+                        "description": "là loại tài khoản. Nếu không được định nghĩa, hệ thống lấy bất kì trong: 107, 108, 109, 110",
+                        "enum": [107,108,109,110]
+                    },
+                    "effDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là Ngày hiệu lực của tài khoản tích lũy (Unix timestamp, tính bằng milliseconds). Nếu thuê bao có hiệu lực, effDate <= thời điểm hiện tại - 1 ngày, ngược lại effDate >= thời điểm hiện tại + 1 ngày."
+                    },
+                    "expDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là Ngày hết hạn của tài khoản tích lũy (Unix timestamp, tính bằng milliseconds kể từ 1970-01-01T00:00:00Z), bao gồm 2 trường hợp: có hạn và hết hạn. Nếu thuê bao có hạn, expDate >= thời điểm hiện tại + 1 ngày, ngược lại expDate < thời điểm hiện tại - 1 ngày."
+                    },
+                    "updateDate": {
+                        "type": "string",
+                        "format": "^[0-9]{13}$",
+                        "description": "là Ngày update gần nhất của gói cước (Unix timestamp, tính bằng milliseconds kể từ 1970-01-01T00:00:00Z)."
+                    },
+                    "state": {
+                        "type": "integer",
+                        "description": "là Trạng thái của tài khoản tích lũy. Nếu trạng thái active, state = 1, ngược lại state = 3. Nếu không được định nghĩa, state = 1 (trạng thái active)."
+                    },
+                    "value": {
+                        "type": "integer",
+                        "format": "^\\d{6}$",
+                        "description": "là Giá trị tích lũy."
+                    },
+                    "billingCycleId": {
+                        "type": "integer",
+                        "description": "giá trị mặc định là 0",
+                        "default": 0
+                    },
+                    "level": {
+                        "type": "integer",
+                        "description": "là level của tài khoản tích lũy. Có ràng buộc với trường khác: là tham chiếu của trường of. Nếu tài khoản tích lũy ở mức cust, level =1. Nếu tài khoản tích lũy ở mức sub, level =2. Nếu không được định nghĩa, hệ thống lấy giá trị =2 (mức sub)."
+                    },
+                    "of": {
+                        "type": "integer",
+                        "description": "được mô tả để xác định chủ thuê bao. Nếu level = 1: of = custID của Subscriber trong câu lệnh đầu vào. Nếu level = 2: of = subID của Subscriber trong câu lệnh đầu vào. Có ràng buộc với trường khác: Tham chiếu đến property level. Nếu không được định nghĩa, hệ thống lấy giá trị tương ứng."
+                    }
+                    },
+                    "required": [
+                        "id",
+                        "balType",
+                        "effDate",
+                        "expDate",
+                        "updateDate",
+                        "state",
+                        "value",
+                        "billingCycleId",
+                        "level",
+                        "of"
+                    ],
+                    "additionalProperties": false
+                }
+            }
+        },
+        "required": [
+            "Test data Name", 
+            "acmBalance"
+        ]
+    }
+
+### HƯỚNG DẪN (INSTRUCTION) ###
+1. Ghi nhớ các trường trong đối tượng AcmBalance
+2. Ghi nhớ các tính chất, ràng buộc của từng trường bên trong đối tượng và các ràng buộc với đối tượng Subscriber.
+3. Phân tích câu lệnh đầu vào, đưa ra các ràng buộc cần thỏa mãn
+4. Sinh dữ liệu đúng theo các ràng buộc. Với các trường không đề cập trong câu lệnh, sinh dữ liệu ngẫu nhiên theo đúng định dạng. Với những trường có đề cập trong prompt, sinh tuân theo mô tả.
+5. Trả ra danh sách các đối tượng AcmBalance dạng JSON. 
+
+Đầu vào (INPUT)
+Câu lệnh tạo đối tượng AcmBalance
+Ví dụ:
+Lệnh: Tạo gói cước có ID = 801, thuộc về subId = 6600, có balType = 30. Tài khoản 810 chưa có hiệu lực.
+
+Đầu ra (OUTPUT) 
+Danh sách các AcmBalance 
+Ví dụ: 
+{
+  "acmBalance": [
+    {
+      "id": 801,
+      "balType": 30,
+      "effDate": "1700000000000",
+      "expDate": "1740000000000",
+      "updateDate": "1712000000000",
+      "state": 1,
+      "value": 123456,
+      "billingCycleId": 50,
+      "level": 2,
+      "of": 6600
+    }
+  ]
+}
+
+
+hãy tạo 20 tài khoản , mỗi tài khoản theo chuẩn: 
+{
+  "acmBalance": [
+    {
+      "id": 801,
+      "balType": 30,
+      "effDate": "1700000000000",
+      "expDate": "1740000000000",
+      "updateDate": "1712000000000",
+      "state": 1,
+      "value": 123456,
+      "billingCycleId": 50,
+      "level": 2,
+      "of": 6600
+    }
+  ]
+}
+
+Trả về đúng 20 phần tử trong mảng `acmbalance`, đúng định dạng JSON, không lặp lại, đầy đủ trường, không thêm giải thích.
+
+Ghi chú: Trả ra mảng 20 object JSON trong 1 lần duy nhất.
+           
+
+
